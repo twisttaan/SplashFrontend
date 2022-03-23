@@ -1,7 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { BadgeCheckIcon } from "@heroicons/react/outline";
 import { Fragment, useRef, useState } from "react";
-import { fauth, firebaseAuth } from "../../utils";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -10,27 +9,13 @@ export default function Login() {
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
   const onLoginPress = () => {
-    firebaseAuth
-      .signInWithEmailAndPassword(fauth, email, password)
-      .then(async (response: { user: { uid: any } }) => {
-        const uid = response.user.uid;
-
-        window.location.href = `/markets`;
-      })
-      .catch((error: any) => {
-        if (error.code == "auth/user-not-found") {
-          alert("User not found");
-        } else if (error.code == "auth/wrong-password") {
-          alert("Wrong password");
-        } else {
-          alert("Unknown error");
-        }
-      });
+    console.log("logging in!");
+    // await axios.
   };
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen bg-[url('/images/signin.png')] bg-cover">
+      <div className="flex flex-col items-center justify-center h-screen bg-cover">
         <div className="p-5 bg-zinc-800 my-44 flex flex-col rounded-xl drop-shadow-2xl">
           <Transition.Root show={open} as={Fragment}>
             <Dialog
