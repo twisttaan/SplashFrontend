@@ -2,13 +2,6 @@ export default function Footer() {
   return (
     <footer>
       <div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path
-            fill="#23272a"
-            fillOpacity={1}
-            d="M0,192L48,208C96,224,192,256,288,272C384,288,480,288,576,256C672,224,768,160,864,149.3C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          />
-        </svg>
         <section className="bg-[#23272a]">
           <div className="max-w-screen-xl px-4 py-12 mx-auto overflow-hidden sm:px-6 lg:px-8">
             <nav className="flex justify-center mt-8">
