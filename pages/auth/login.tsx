@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { BadgeCheckIcon } from "@heroicons/react/outline";
+import axios from "axios";
 import { Fragment, useRef, useState } from "react";
 
 export default function Login() {
@@ -10,7 +11,21 @@ export default function Login() {
   const cancelButtonRef = useRef(null);
   const onLoginPress = () => {
     console.log("logging in!");
-    // await axios.
+    axios
+      .post(`${process.env.API_URL}/auth/login`, {
+        username: email,
+        password
+      })
+      .then((res) => {
+        console.log(res);
+        axios
+          .get(`${process.env.API_URL}/user/${res.data.user.id}`, {
+            withCredentials: true
+          })
+          .then((res) => {
+            console.log("user", res);
+          });
+      });
   };
 
   return (
