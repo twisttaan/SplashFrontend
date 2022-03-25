@@ -1,5 +1,6 @@
 import axios from "axios";
 import { NextPage } from "next";
+import UnkownPage from "../components/branding/UnkownPage";
 import UserHero from "../components/user/UserHero";
 import { APIUser } from "../types";
 
@@ -39,13 +40,7 @@ const User: NextPage = (props) => {
   const { user, username } = props as Props;
 
   while (!user) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <span className="text-transparent text-7xl bg-clip-text bg-gradient-to-tr from-[#0011ff] to-[#00aeff] hover:text-[#ffffff] transition-all">
-          Page not found.
-        </span>
-      </div>
-    );
+    return <UnkownPage />;
   }
   return (
     <div>
