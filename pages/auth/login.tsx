@@ -1,7 +1,9 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,13 +24,7 @@ export default function Login() {
       )
       .then((res) => {
         console.log(res);
-        axios
-          .get(`${process.env.API_URL}/user/${res.data.user.id}`, {
-            withCredentials: true
-          })
-          .then((res) => {
-            console.log("user", res);
-          });
+        router.push(`/${res.data.user.username}`);
       });
   };
 

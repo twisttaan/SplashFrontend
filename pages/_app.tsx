@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import "../styles/main.css";
 
 const queryClient = new QueryClient();
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>

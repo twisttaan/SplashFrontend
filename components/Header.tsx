@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LoginButton from "./auth/LoginButton";
 
 export default function Header() {
   return (
@@ -24,12 +25,7 @@ export default function Header() {
               </Link>
             </div>
             <div className="inline-flex items-center ml-5 space-x-6 lg:justify-end">
-              <a
-                href="#"
-                className="text-base font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900 dark:text-white dark:hover:text-gray-400"
-              >
-                Sign in
-              </a>
+              <LoginButton />
             </div>
           </div>
         </section>
