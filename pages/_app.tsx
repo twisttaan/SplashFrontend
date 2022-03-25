@@ -2,7 +2,6 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "../styles/main.css";
@@ -60,7 +59,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           />
           <meta name="theme-color" content="#ffffff" />
         </Head>
-        <Banner />
         <Header />
         <Component {...pageProps} />
         <Footer />

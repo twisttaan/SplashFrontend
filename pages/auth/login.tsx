@@ -32,7 +32,6 @@ export default function Login() {
     <>
       <div className="flex flex-col items-center justify-center h-screen bg-cover">
         <div className="p-5 bg-zinc-800 my-44 flex flex-col rounded-xl drop-shadow-2xl">
-          <h1 className="text-3xl font-medium">Login</h1>
           <input
             type="text"
             placeholder="Email or Username"
@@ -50,23 +49,26 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            className="p-5 bg-blue-500 mt-6 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mb-7"
+            className="p-2 bg-blue-500 mt-6 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
             onClick={onLoginPress}
           >
             Log in
           </button>
           <br />
-          <a
-            className="text-white text-center"
-            onClick={() => {
-              setOpen(true);
-            }}
-          >
-            <span className="text-sm text-shadow text-center hover:cursor-pointer hover:underline">
-              Don&apos;t have an account?{" "}
-              <span className="text-blue-500">Sign up</span>
-            </span>
-          </a>
+
+          <span className="text-sm text-shadow text-center">
+            Don&apos;t have an account?{" "}
+            <a
+              className="text-white text-center"
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              <span className="text-blue-500 hover:cursor-pointer hover:underline">
+                Sign up
+              </span>
+            </a>
+          </span>
         </div>
       </div>
     </>
