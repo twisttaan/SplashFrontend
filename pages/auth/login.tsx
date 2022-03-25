@@ -10,10 +10,12 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const { user, setUser } = useUser();
-
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onLoginPress = () => {
+    setLoading(true);
+
     axios
       .post(
         `${process.env.API_URL}/auth/login`,
@@ -27,12 +29,14 @@ export default function Login() {
       )
       .then((res) => {
         console.log(res);
+        setLoading(false);
         sendToast("Logged in!", "success");
         setUser(res.data.user);
         router.push(`/${res.data.user.username}`);
       })
       .catch((err) => {
         sendToast("Username or email and password combo wrong", "error");
+        setLoading(false);
       });
   };
 
@@ -54,13 +58,18 @@ export default function Login() {
             id="password"
             className="p-2 w-96 mx-2 mt-6 bg-zinc-800 text-white placeholder-gray-400 border-2 rounded-lg border-zinc-700"
             value={password}
+            disabled={loading}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            className="p-2 bg-blue-500 mt-6 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+            className="p-2 bg-blue-500 mt-6 h-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex flex-col items-center justify-center"
             onClick={onLoginPress}
           >
-            Log in
+            {loading ? (
+              <div className="animate-spin items-center rounded-full h-5 w-5 border-t-2 border-b-2 border-blurple drop-shadow-2xl" />
+            ) : (
+              "Log in"
+            )}
           </button>
           <br />
 
