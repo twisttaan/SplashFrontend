@@ -1,16 +1,18 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useUser } from "../../context/UserProvider";
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { user, setUser } = useUser();
+
   const [open, setOpen] = useState(false);
 
   const onLoginPress = () => {
-    console.log("logging in!");
     axios
       .post(
         `${process.env.API_URL}/auth/login`,
@@ -24,6 +26,7 @@ export default function Login() {
       )
       .then((res) => {
         console.log(res);
+        setUser(res.data.user);
         router.push(`/${res.data.user.username}`);
       });
   };

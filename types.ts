@@ -5,6 +5,8 @@ export interface APIUser {
   createdAt: string;
   staff: boolean;
   inviteUsed: string;
+  followers: APIUser[];
+  following: APIUser[];
 }
 
 export interface APIMe extends APIUser {

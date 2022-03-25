@@ -7,7 +7,6 @@ export async function getServerSideProps(context: {
   query: { username: string };
 }) {
   try {
-    console.log(context.query.username);
     const res = await axios.get(
       `${process.env.API_URL}/user/${context.query.username}`,
       {
@@ -50,7 +49,9 @@ const User: NextPage = (props) => {
   }
   return (
     <div>
-      <UserHero user={user} />
+      <div className="flex flex-col items-center justify-center h-screen bg-cover">
+        <UserHero user={user} />
+      </div>
     </div>
   );
 };

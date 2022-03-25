@@ -1,10 +1,30 @@
+import { BanIcon } from "@heroicons/react/outline";
+import {
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  MenuList
+} from "@mui/material";
 import axios from "axios";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { APIMe } from "../../types";
+import { useUser } from "../../context/UserProvider";
 
 export default function LoginButton() {
-  const [user, setUser] = useState<APIMe | null>(null);
+  const router = useRouter();
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const { user, setUser } = useUser();
+
   useEffect(() => {
     axios
       .get(`${process.env.API_URL}/user/me`, {
@@ -13,15 +33,67 @@ export default function LoginButton() {
       .then((res) => {
         setUser(res.data.user);
       })
-      .catch(() => {});
+      .catch((err) => console.log("error " + err));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
-      <Link href={user ? `/${user.username}` : "/auth/login"}>
-        <a className="text-base font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900 dark:text-white dark:hover:text-gray-400">
-          {user ? user.username : "Login"}
-        </a>
-      </Link>
+      <button
+        type="button"
+        id="user-menu-button"
+        className="text-base font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900 dark:text-white dark:hover:text-gray-400"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={user ? handleClick : () => router.push("/auth/login")}
+      >
+        {user ? user.username : "Login"}
+      </button>
+      <Menu
+        id="user-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button"
+        }}
+      >
+        <MenuList>
+          <MenuItem>
+            <ListItemIcon>
+              <BanIcon
+                className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </ListItemIcon>
+            <ListItemText
+              onClick={
+                user
+                  ? () => {
+                      axios
+                        .post(
+                          `${process.env.API_URL}/auth/logout`,
+                          {},
+                          {
+                            withCredentials: true
+                          }
+                        )
+                        .then(() => {
+                          setUser(null);
+                          setAnchorEl(null);
+                          router.push("/auth/login");
+                        })
+                        .catch(() => {});
+                    }
+                  : () => router.push("/auth/login")
+              }
+            >
+              {user ? "Logout" : "Login"}
+            </ListItemText>
+          </MenuItem>
+        </MenuList>
+      </Menu>
     </>
   );
 }
