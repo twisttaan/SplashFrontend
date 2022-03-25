@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Footer from "../components/Footer";
@@ -14,17 +15,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <UserProvider>
         <QueryClientProvider client={queryClient}>
+          <Toaster />
+
           <Head>
-            <meta property="og:title" content="Evie" />
+            <meta property="og:title" content="Splash" />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://eviebot.rocks/" />
+            <meta property="og:url" content="https://splash.evie.pw/" />
             <meta
               property="og:image"
               content="https://eviebot.rocks/assets/Banner.png"
             />
             <meta
               property="og:description"
-              content="It's time to use Evie in your Discord server! Evie is a feature-rich, easy to use Discord bot built to deliver the best experience of a bot on Discord!"
+              content="Splash brings back the main essence of social media, friends."
             />
             <meta name="theme-color" content="#7289DA" />
 

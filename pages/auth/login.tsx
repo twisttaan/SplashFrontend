@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useUser } from "../../context/UserProvider";
+import sendToast from "../../utils/sendToast";
 
 export default function Login() {
   const router = useRouter();
@@ -26,8 +27,12 @@ export default function Login() {
       )
       .then((res) => {
         console.log(res);
+        sendToast("Logged in!", "success");
         setUser(res.data.user);
         router.push(`/${res.data.user.username}`);
+      })
+      .catch((err) => {
+        sendToast("Username or email and password combo wrong", "error");
       });
   };
 

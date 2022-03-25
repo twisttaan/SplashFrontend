@@ -10,6 +10,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useUser } from "../../context/UserProvider";
+import sendToast from "../../utils/sendToast";
 
 export default function LoginButton() {
   const router = useRouter();
@@ -31,9 +32,10 @@ export default function LoginButton() {
         withCredentials: true
       })
       .then((res) => {
+        sendToast(res.data.message, "success");
         setUser(res.data.user);
       })
-      .catch((err) => console.log("error " + err));
+      .catch((err) => {});
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -82,9 +84,12 @@ export default function LoginButton() {
                         .then(() => {
                           setUser(null);
                           setAnchorEl(null);
+                          sendToast("Logged Out!", "success");
                           router.push("/auth/login");
                         })
-                        .catch(() => {});
+                        .catch((err) => {
+                          sendToast(err.data.message, "error");
+                        });
                     }
                   : () => router.push("/auth/login")
               }
