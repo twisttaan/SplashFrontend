@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { OpenGraph } from "../components/OpenGraph";
 import { UserProvider } from "../context/UserProvider";
 import "../styles/main.css";
 
@@ -17,18 +18,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
           <Toaster />
 
+          <OpenGraph title="Splash" url="https://splash.evie.pw/" image="https://eviebot.rocks/assets/Banner.png"
+            description="Splash brings back the main essence of social media, friends." />
+
           <Head>
-            <meta property="og:title" content="Splash" />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://splash.evie.pw/" />
-            <meta
-              property="og:image"
-              content="https://eviebot.rocks/assets/Banner.png"
-            />
-            <meta
-              property="og:description"
-              content="Splash brings back the main essence of social media, friends."
-            />
             <meta name="theme-color" content="#7289DA" />
 
             <link
