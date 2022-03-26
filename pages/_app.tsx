@@ -19,10 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Toaster />
 
           <OpenGraph title="Splash" url="https://splash.evie.pw/" image="https://eviebot.rocks/assets/Banner.png"
-            description="Splash brings back the main essence of social media, friends." />
+            description="Splash brings back the main essence of social media, friends." color="#7289DA" />
 
           <Head>
-            <meta name="theme-color" content="#7289DA" />
 
             <link
               rel="apple-touch-icon"

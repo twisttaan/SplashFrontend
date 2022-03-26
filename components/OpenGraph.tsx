@@ -6,9 +6,10 @@ interface IOpenGraph {
     url: string;
     image?: string;
     description?: string;
+    color?: string;
 }
 
-export const OpenGraph: NextPage<IOpenGraph> = ({ title, url, image, description }) => {
+export const OpenGraph: NextPage<IOpenGraph> = ({ title, url, image, description, color }) => {
     
     return (
         <Head>
@@ -17,6 +18,7 @@ export const OpenGraph: NextPage<IOpenGraph> = ({ title, url, image, description
             {url && <meta property="og:url" content={url} />}
             {image && <meta property="og:image" content={image} />}
             {description && <meta property="og:description" content={description} />}
+            {color && <meta name="theme-color" content={color} />}
         </Head>
     )
 }
