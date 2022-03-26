@@ -1,6 +1,7 @@
 import axios from "axios";
 import { NextPage } from "next";
 import UnkownPage from "../components/branding/UnkownPage";
+import Slate from "../components/messages/Slate";
 import UserHero from "../components/user/UserHero";
 import { APIUser } from "../types";
 
@@ -38,6 +39,9 @@ interface Props {
 
 const User: NextPage = (props) => {
   const { user, username } = props as Props;
+  function onChange(value: string) {
+    console.log(value);
+  }
 
   while (!user) {
     return <UnkownPage />;
@@ -46,6 +50,11 @@ const User: NextPage = (props) => {
     <div>
       <div className="flex flex-col items-center justify-center h-screen bg-cover">
         <UserHero user={user} />
+        <Slate
+          onReturn={() => console.log("return")}
+          onChange={onChange}
+          label={`Message @${user.username}`}
+        />
       </div>
     </div>
   );
