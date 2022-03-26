@@ -1,35 +1,19 @@
 import Image from "next/image";
-import Link from "next/link";
-import LoginButton from "./auth/LoginButton";
+import TextBox from "./ui/TextBox";
+import UserIcon from "./user/UserIcon";
 
 export default function Header() {
   return (
-    <>
-      <header>
-        <section className="w-full px-8 text-gray-700 bg-[#23272a]">
-          <div className="container flex flex-col flex-wrap items-center justify-between py-5 mx-auto md:flex-row max-w-7xl">
-            <div className="relative flex flex-col md:flex-row">
-              <Link href="/">
-                <a>
-                  <h1 className="text-3xl text-[#FFFFFF] font-bold tracking-tight text-center hover:text-[#7289DA] hover:scale-110 transition-all duration-200 ease-in-out">
-                    <Image
-                      width={50}
-                      height={50}
-                      alt="Splash S Logo"
-                      src="/assets/SplashLetter.svg"
-                      className="w-4 h-4 align-bottom object-contain"
-                    />{" "}
-                    <span className="-ml-3">plash</span>
-                  </h1>
-                </a>
-              </Link>
-            </div>
-            <div className="inline-flex items-center ml-5 space-x-6 lg:justify-end">
-              <LoginButton />
-            </div>
-          </div>
-        </section>
-      </header>
-    </>
+    <div className="py-5 mx-44 my-2 rounded-full flex flex-row justify-start items-start bg-splink w-10/12">
+      <Image
+        width={50}
+        height={50}
+        alt="Splash S Logo"
+        src="/assets/SplashLetter.svg"
+        className="w-4 h-4 align-bottom object-contain"
+      />
+      <TextBox placeholder="Search Splash" className="w-64" />
+      <UserIcon />
+    </div>
   );
 }

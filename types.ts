@@ -4,9 +4,17 @@ export interface APIUser {
   displayName: string;
   createdAt: string;
   staff: boolean;
-  inviteUsed: string;
   followers: APIUser[];
   following: APIUser[];
+}
+
+export interface APIPost {
+  id: string;
+  imageurl: string;
+  title: string;
+  content: string;
+  createdAt: string;
+  user: APIUser;
 }
 
 export interface APIMe extends APIUser {

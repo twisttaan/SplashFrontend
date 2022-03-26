@@ -1,4 +1,5 @@
 import { BanIcon } from "@heroicons/react/outline";
+import { UserCircleIcon } from "@heroicons/react/solid";
 import {
   ListItemIcon,
   ListItemText,
@@ -12,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "../../context/UserProvider";
 import sendToast from "../../utils/sendToast";
 
-export default function LoginButton() {
+export default function UserIcon() {
   const router = useRouter();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -50,7 +51,7 @@ export default function LoginButton() {
         aria-expanded={open ? "true" : undefined}
         onClick={user ? handleClick : () => router.push("/auth/login")}
       >
-        {user ? user.username : "Login"}
+        {user ? user.username : <UserCircleIcon />}
       </button>
       <Menu
         id="user-menu"
