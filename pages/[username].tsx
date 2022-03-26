@@ -37,8 +37,7 @@ interface Props {
   username: string;
 }
 
-const User: NextPage = (props) => {
-  const { user, username } = props as Props;
+const User: NextPage<Props> = ({ user, username }) => {
   function onChange(value: string) {
     console.log(value);
   }
